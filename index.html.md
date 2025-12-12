@@ -1,0 +1,54 @@
+<!DOCTYPE html>  
+<html lang="ar">  
+<head>  
+<meta charset="UTF-8">  
+<title>مولد باركود الدعوة مرة واحدة</title>  
+<style>  
+body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }  
+input, button { padding: 10px; margin: 5px; font-size: 16px; }  
+#qrcodes { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px; }  
+.qr-item { margin: 10px; text-align: center; }  
+</style>  
+</head>  
+<body>  
+<h2>اكتب اسمك للحصول على QR Code</h2>  
+<label>اسم الضيف:</label>  
+<input type="text" id="name" placeholder="اكتب اسمك" required><br>  
+<label>عدد QR Codes:</label>  
+<input type="number" id="guestCount" placeholder="عدد QR Codes" required><br>  
+<button id="generateBtn">توليد QR Codes</button>  
+<div id="qrcodes"></div>  
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>  
+<script>  
+document.getElementById('generateBtn').addEventListener('click', function() {  
+    var name = document.getElementById('name').value.trim();  
+    var guestCount = parseInt(document.getElementById('guestCount').value);  
+    var eventName = "حفلة تخرج أحمد"; // اسم المناسبة محدد مسبقًا  
+  
+    if(!name || isNaN(guestCount) || guestCount <= 0){  
+        alert('ادخل كل القيم بشكل صحيح');  
+        return;  
+    }  
+  
+    var container = document.getElementById('qrcodes');  
+    container.innerHTML = '';  
+  
+    for(var i=1; i<=guestCount; i++){  
+        var id = Date.now() + '_' + i; // توليد ID فريد لكل QR  
+        var link = 'https://script.google.com/macros/s/AKfycbzXh9k1-NQrOrzDiBzpLXRngnbs8cbm7zU2KKJYe0wqVsDpVZC2oQNJtRKmz0l2RKZjIQ/exec?id=' + id + '&name=' + encodeURIComponent(name) + '&event=' + encodeURIComponent(eventName);  
+  
+        var div = document.createElement('div');  
+        div.className = 'qr-item';  
+        var qr = document.createElement('canvas');  
+        new QRious({ element: qr, value: link, size: 200 });  
+        var label = document.createElement('div');  
+        label.innerText = 'QR للضيف #' + i;  
+        div.appendChild(qr);  
+        div.appendChild(label);  
+        container.appendChild(div);  
+    }  
+});  
+</script>  
+</body>  
+</html>  
