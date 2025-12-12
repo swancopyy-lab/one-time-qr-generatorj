@@ -36,7 +36,7 @@ document.getElementById('generateBtn').addEventListener('click', function() {
   
     for(var i=1; i<=guestCount; i++){  
         var id = Date.now() + '_' + i; // توليد ID فريد لكل QR  
-        var link = 'https://script.google.com/macros/s/AKfycbzXh9k1-NQrOrzDiBzpLXRngnbs8cbm7zU2KKJYe0wqVsDpVZC2oQNJtRKmz0l2RKZjIQ/exec?id=' + id + '&name=' + encodeURIComponent(name) + '&event=' + encodeURIComponent(eventName);  
+        var link = 'https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbxvwepkXYZSgHW0QA5Oa1s3rAYeG0oYkGZOAyqsTFAai3g8nWRDAUCVutA5Gp75OQwNmg/exec/exec?id=' + id + '&name=' + encodeURIComponent(name) + '&event=' + encodeURIComponent(eventName);  
   
         var div = document.createElement('div');  
         div.className = 'qr-item';  
